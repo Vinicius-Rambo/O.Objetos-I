@@ -1,0 +1,46 @@
+Atributos e metodos televisor
+
+|- - - - - -  - - - - - - - - - -
+|   Televisor	                    
+|- - - - - -  - - - - - - - - - -
+|    Tela {}
+|   TamanhoTela{}
+|    Portas{}
+|    Botões{}
+|    Marca{}
+|- - - - - -  - - - - - - - - - -
+|   Ligar()
+|   Desligar()
+|   AumentarVolume()
+|   DiminuirVolume()
+|   TrocarCanal()a
+|   MudarEntrada()
+|   Perifericos()
+
+
+
+Atributos e metodos Telefone
+
+|- - - - - -  - - - - - - - - - -
+|        Telefone
+|- - - - - -  - - - - - - - - - -
+|    Tela{}
+|    Microfones{}
+|    AutoFalantes{}
+|    Processador{} 
+|    MemoriaRam{}
+|    MemoriaSecundaria{}
+|    Bateria{}
+|    TouchScreen{}
+|    Câmera{}
+|- - - - - -  - - - - - - - - - -
+|   Ligar()
+|    Desligar()
+|    Reiniciar()    
+|    AumentarVolume()
+|    DiminuirVolume()
+|    TirarFoto()
+|    AcessarInternet()
+|    LigarPara()
+|    BaixarApp
+- - - - - - - - - - - - - - - - - 

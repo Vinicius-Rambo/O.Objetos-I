@@ -1,0 +1,28 @@
+# Caracteristicas de uma cadeira:
+
+----------------------------------------------------
+|                cadeira                            |
+|-------------------------------------------------- |
+|   Marca()                                         |
+|   QuantidadePernas()                              |
+|   Cor()                                           |
+|   MaterialCorpo()                                 |
+|   MaterialPernas()                                |
+|   TipoAcento()                                    |
+|   FormatoPés()                                    |
+|   FormatoCorpo()                                  |
+|   EncostoCabeça()                                 |
+|   Dobravel()                                      |
+|   Altura()                                        |
+|   Peso()                                          |
+|   TipoUso()                                       |
+|   ApoioBraço()                                    |
+|   PortaCopos()                                    |
+|   Movimento()                                     |
+|   Preço()                                         |
+-----------------------------------------------------  
+|   girar{}                                         | 
+|   ajustarEncosto{}                                | 
+|   ajustaralturaEncosto{}                          | 
+|   dobrar                                          | 
+-----------------------------------------------------

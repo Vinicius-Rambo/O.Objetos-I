@@ -1,0 +1,60 @@
+#Caracteristicas de um carro
+
+----------------------------------------------
+|  Carro                                     |
+---------------------------------------------- 
+|  precoFip()                                |
+|  preco()                                   | 
+|  marca()                                   | 
+|  modelo()                                  | 
+|  cavalos()                                 | 
+|  ano()                                     | 
+|  preço()                                   | 
+|  leilao()                                  | 
+|  batido()                                  | 
+|  kilometragem()                            | 
+|  tamanho()                                 | 
+|  quantidadeMarcha()                        | 
+|  tipoCambio()                              | 
+|  tipoTracao()                              | 
+|  estilo()                                  |
+|  tipoSuspensao()                           |  
+-----------------------------------------------
+
+----------------------------------------------
+|    Lavacar                                 |
+----------------------------------------------
+|    modelo()                                |
+|    cor()                                   |
+|    estadoSujeira()                         |
+|    nomeDono()                              |
+|    telefoneDono()                          |
+|    tipoVidro                               |
+|    interno()                               |
+|    tipoLavagem()                           |
+----------------------------------------------
+
+----------------------------------------------
+|    Montadora Carro                          |
+----------------------------------------------
+|    tipoCarro()                              |  
+|    quantidadeEixo()                         |  
+|    tipoSuspensao()                          |  
+|    tipoMarcha()                             |  
+|    tipoCambio()                             |  
+|    modeloMotor()                            |  
+|    marcaChasi()                             |  
+|    modeloBanco()                            |  
+|    tipoFreio()                              |  
+|    tipoEspelho()                            |  
+|    modeloFarois()                           |  
+|    modeloPainel()                           |  
+|    limpadorParabrisa()                      |  
+|    computadorBordo()                        |  
+|    luzFreio()                               |  
+|    modeloJanelas()                          |  
+|    modeloDireção()                          |
+|    sistemaSeguraça()                        |
+|                                             |  
+-----------------------------------------------
+  

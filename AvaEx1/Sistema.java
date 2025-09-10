@@ -146,7 +146,7 @@ public class Sistema {
                 System.out.println("Telefone: ");
                 p.setTelefone((reader.readLine()));
 
-                System.out.println("Peso(kg): ");
+                System.out.println("Peso da bagagem(kg): ");
                 p.setPeso(Integer.parseInt(reader.readLine()));
 
                 System.out.println("Número do Assento: ");

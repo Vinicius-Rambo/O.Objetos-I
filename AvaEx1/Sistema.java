@@ -28,11 +28,16 @@ public class Sistema {
             System.err.println("[0 Sair]");
             opcao = reader.readLine();
             
-            switch(opcao){
+
+            //Disclaimer importante: é possivel fazer a validação de nulo que eu coloquei nos metodos, dentro do proprio Switch
+            //por questões de estetica do codigo eu preferi deixar o mesmo limpo.
+
+            switch(opcao){ 
                 case "1": cadastrarVoo(); break;
                 case "2": listarVoos(); break;
                 case "3": consultarVoo(); break;
                 case "4": cadastrarPassageiro(); break;
+                case "0": System.out.println("Saindo..."); break;
                 default:  break;
             }
         }
@@ -53,13 +58,29 @@ public class Sistema {
     }
 
     private void listarVoos(){
+
+        //Tratamento para ele não listar se não tiver Voos
+        int qtd = companhia.getQtdVoos(); 
+        if(qtd == 0){
+            System.out.println("Erro: Não há voos cadastrados!");
+            return; 
+        }
+
         System.out.println("\n - - - Lista de Voos - - -");
         for(int i= 0; i < companhia.getQtdVoos(); i++){
             Voo v = companhia.getVoo(i);
             System.out.println("Número: " + v.getNumero() + "| local de Embarque: " + v.getLocalEmbarque() + "| Destino: " + v.getDestino() + "| passageiros: " + v.getQtdPassageiros());   
         }
     }
+
     private void consultarVoo() throws Exception{
+        
+        //tratamento para listas se não tiver voos.
+        if(companhia.getQtdVoos() == 0){
+            System.out.println("Erro: Não há voos cadastrados!");
+            return;
+        }
+
         System.out.println("Digite o número do voo: ");
         int numero = Integer.parseInt(reader.readLine());
         boolean achou = false;
@@ -76,13 +97,14 @@ public class Sistema {
 
                 for(int j = 0; j < v.getQtdPassageiros(); j++){
                     Passageiro p = v.getPassageiro(j);
+                    System.out.println("\n[" + j+1 + "]");
                     System.out.println("Nome: " + p.getNome() + " | CPF: " + p.getCpf());
-                    System.out.println("Passaporte" + p.getNumPassaporte());
+                    System.out.println("Passaporte: " + p.getNumPassaporte());
                     System.out.println("Idade: " + p.getIdade() + " | Telefone: " + p.getTelefone());
                     System.out.println("Endereço: " + p.getEndereco());
                     System.out.println("Peso Bagagem: " + p.getPeso() + "kg | Assento: " + p.getAssento());
                     System.out.println("--------------------------------------------------"); 
-
+                }
                 achou = true;
                 break;
             }
@@ -90,7 +112,12 @@ public class Sistema {
         if(!achou){ System.out.println("Voo não foi achado."); }
     }
 
-    private void cadastrarPassageiro() throws Exception {
+    private void cadastrarPassageiro() throws Exception {   
+        if(companhia.getQtdVoos() == 0){
+            System.out.println("Erro: Não há voos cadastrados para adicionar passageiros!");
+            return;
+        }
+
         System.out.println("Digite o número do voo: ");
         int numero = Integer.parseInt(reader.readLine());
         boolean achou = false;

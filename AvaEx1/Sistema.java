@@ -46,7 +46,7 @@ public class Sistema {
         v.setLocalEmbarque(reader.readLine());
 
         System.out.println("Destino: ");
-        v.setLocalEmbarque(reader.readLine());
+        v.setDestino(reader.readLine());
 
         companhia.addVoo(v);
         System.out.println("Voo cadastrado com sucesso!");
@@ -76,9 +76,13 @@ public class Sistema {
 
                 for(int j = 0; j < v.getQtdPassageiros(); j++){
                     Passageiro p = v.getPassageiro(j);
-                    System.out.println("Nome: " + p.getNome() + " | CPF: " + p.getCpf() + " | Idade: " + p.getIdade() + " | Telefone: " + p.getTelefone() 
-                                                +" | Endereço: " + p.getEndereco() + " | Peso Bagagem: " + p.getPeso() +"kg | Assento: " + p.getAssento()); 
-                }
+                    System.out.println("Nome: " + p.getNome() + " | CPF: " + p.getCpf());
+                    System.out.println("Passaporte" + p.getNumPassaporte());
+                    System.out.println("Idade: " + p.getIdade() + " | Telefone: " + p.getTelefone());
+                    System.out.println("Endereço: " + p.getEndereco());
+                    System.out.println("Peso Bagagem: " + p.getPeso() + "kg | Assento: " + p.getAssento());
+                    System.out.println("--------------------------------------------------"); 
+
                 achou = true;
                 break;
             }
@@ -98,13 +102,16 @@ public class Sistema {
                 Passageiro p = new Passageiro();
 
                 System.out.println("Nome: ");
-                p.setNome((reader.readLine()));
+                p.setNome(reader.readLine());
 
                 System.out.println("CPF: ");
-                p.setCpf((reader.readLine()));
+                p.setCpf(reader.readLine());
+
+                System.out.println("Passaporte: ");
+                p.setNumPassaporte(reader.readLine());
 
                 System.out.println("Endereço: ");
-                p.setEndereco((reader.readLine()));
+                p.setEndereco(reader.readLine());
 
                 System.out.println("Idade: ");
                 p.setIdade(Integer.parseInt(reader.readLine()));

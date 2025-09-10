@@ -6,6 +6,7 @@ public class Passageiro {
     private String assento;
     private int idade;
     private int peso;
+    private String numPassaporte;
 
     //Nome
     public String getNome() {
@@ -61,6 +62,14 @@ public class Passageiro {
     }
     public void setPeso(int peso) {
         this.peso = peso;
+    }
+    
+    //Passaporte
+    public String getNumPassaporte() {
+        return numPassaporte;
+    }
+    public void setNumPassaporte(String numPassaporte) {
+        this.numPassaporte = numPassaporte;
     }
 }
 

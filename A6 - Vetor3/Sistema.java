@@ -42,9 +42,9 @@ public class Sistema {
                 case "3":
                     consultarTurma();
                     break;
-                
+
                 default:
-                    break;    
+                    break;
 
 
             }
@@ -76,7 +76,7 @@ public class Sistema {
 
             System.out.println("Matrícula: ");
             aluno.setMatricula(reader.readLine());
-            
+
             System.out.println("Nota 1:");
             aluno.setNota1(Float.parseFloat(reader.readLine()));
 
@@ -89,7 +89,7 @@ public class Sistema {
             System.out.println("Nota 4:");
             aluno.setNota4(Float.parseFloat(reader.readLine()));
 
-            t.setVetAlunos(aluno); //Guarda o aluno no vetor. 
+            t.setVetAlunos(aluno); //Guarda o aluno no vetor.
         }
         e1.setTurmas(t);
     }

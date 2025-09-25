@@ -5,7 +5,7 @@ public class ExEscritaArquivo{
     public static void main(String[] args) throws Exception{
         String nomeArqSaida = "arqSaida.csv";
         BufferedWriter arqGravacao = new BufferedWriter(new FileWriter(nomeArqSaida));
-    
+
         String linha = "Produto;Preço;Estoque";
         arqGravacao.write(linha);
         arqGravacao.newLine();
@@ -30,5 +30,5 @@ public class ExEscritaArquivo{
         linha = nomeProduto +";"+ preco +";"+ estoque +";";
         arqGravacao.write(linha);
         arqGravacao.close();
-    }    
+    }
 }

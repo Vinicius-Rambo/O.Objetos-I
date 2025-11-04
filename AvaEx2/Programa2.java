@@ -35,7 +35,7 @@ public class Programa2 {
                     case "0": System.out.println("Bye..."); break;
                     default:
                         System.out.println("Opção inválida!");
-                        pausar();
+                        //pausar();
                         break;
                 }
 
@@ -69,7 +69,7 @@ public class Programa2 {
 
             novaMargem(teclado);
             System.out.println("Arquivo atualizado: " + entrada);
-            pausar();
+            
             
         }
 
@@ -92,7 +92,7 @@ public class Programa2 {
             writer.newLine(); //Cria nova linha
             writer.close();
             System.out.println("Produto adicionado!");
-            pausar();
+            
 
         }
 
@@ -145,7 +145,7 @@ public class Programa2 {
         public static void novaMargem(BufferedReader teclado) throws IOException {
             System.out.print("Digite a margem de lucro (%): ");
             margem = Float.parseFloat(teclado.readLine()); //Define o valor da margem ao digitado.
-            pausar();
+            //pausar();
         }
 
         // === Submenu Estoque ===
@@ -168,7 +168,7 @@ public class Programa2 {
                 case "0": break;
                 default:
                     System.out.println("Opção inválida!");
-                    pausar();
+                    //pausar();
                     break;
             }
         } while (!opc.equals("0"));
@@ -176,7 +176,7 @@ public class Programa2 {
 
     //Metodos do SubMenu
     static void mostrarEstoqueBaixo() throws Exception {
-        limparTela();
+        //limparTela();
         System.out.println("Produtos com estoque < 10:");
         try (BufferedReader arq = new BufferedReader(new FileReader(entrada))) {
             arq.readLine();
@@ -188,7 +188,7 @@ public class Programa2 {
                     System.out.println(col[0] + " | " + col[2] + " | Estoque: " + estoque);
             }
         }
-        pausar();
+        //pausar();
     }
 
     static void gerarCSVEstoqueBaixo() throws Exception {
@@ -217,7 +217,7 @@ public class Programa2 {
         arq2.readLine();
         System.out.println("\nCódigo | Produto | Preço de Custo | Estoque");
         String linha2;
-        
+
         while ((linha2 = arq2.readLine()) != null) {
             String[] col = linha2.split(";");
             System.out.println(col[0] + " | " + col[2] + " | " + col[3] + " | " + col[1]);

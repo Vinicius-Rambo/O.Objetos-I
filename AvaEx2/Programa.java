@@ -3,7 +3,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
-import java.io.File;
+
 
 public class Programa {
     public static void main(String[] args) throws Exception {

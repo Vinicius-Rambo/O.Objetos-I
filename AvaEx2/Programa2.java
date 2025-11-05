@@ -13,8 +13,8 @@ public class Programa2 {
         public static void main(String[] args) throws Exception {
             String opcao; //Escolha de opçao do Menu.
             do {
-                System.out.println("\n====== Menu ========");                      //é possivel tranformar toda essa
-                System.out.println("[1] - Recarregar arquivo de entrada");       //parte em uma unica metodo "menu()"   
+                System.out.println("\n====== Menu ========");                    //é possivel tranformar toda essa
+                System.out.println("[1] - Recarregar arquivo de entrada");       //parte em um unico metodo "menu()"   
                 System.out.println("[2] - Inserir item na base");                //e deixar no main apenas a chamada
                 System.out.println("[3] - Mostrar produtos e preço de venda");   //dessa metodo.
                 System.out.println("[4] - Gerar CSV com preço de venda"); 
@@ -42,7 +42,7 @@ public class Programa2 {
         }
 
         // === Metodos auxiliares ===
-        static void limparTela() {
+        static void limparTela() { // Usei "static" em quase tudo porque o programa não se foi necessario criar objetos e contrutores.
             try {
                 new ProcessBuilder("clear").inheritIO().start().waitFor(); //Limpa o terminal
             }
@@ -197,10 +197,10 @@ public class Programa2 {
 
         BufferedReader arq = new BufferedReader(new FileReader(entrada)); //Leitor do arquivo de entrada
         BufferedWriter out = new BufferedWriter(new FileWriter(saida)); //Escritor do arquivo de saida
-        String linha = arq.readLine(); //Le a linha do arquivo de entrada e salva na string "Linha"
-        out.write(linha);
-        out.newLine();
-        while ((linha = arq.readLine()) != null) {
+        String linha = arq.readLine(); //Le a primeira linha do arquivo de entrada e salva na string "Linha"
+        out.write(linha); //Digita no de saida a linha
+        out.newLine(); // cria uma linha vazia.
+        while ((linha = arq.readLine()) != null) { //Enquanto nao for uma linha nula
             String[] col = linha.split(";");
             int estoque = Integer.parseInt(col[1]);
             if (estoque < 10) {
@@ -213,13 +213,13 @@ public class Programa2 {
         System.out.println("Arquivo '" + saida + "' gerado!");
     }
 
-    static void mostrarProdutosCusto() throws Exception {
+    static void mostrarProdutosCusto() throws Exception { 
         BufferedReader arq = new BufferedReader(new FileReader(entrada));
         arq.readLine();
         System.out.println("\nCódigo | Produto | Preço de Custo | Estoque");
-        String linha;
+        String linha; //Variavel local Linha
 
-        while ((linha = arq.readLine()) != null) {
+        while ((linha = arq.readLine()) != null) { //Enquanto a linha nao for nula. 
             String[] col = linha.split(";");
             System.out.println(col[0] + " | " + col[2] + " | " + col[3] + " | " + col[1]);
         }
@@ -228,7 +228,7 @@ public class Programa2 {
 
     }
 
-
+    // Acho que esse é o codigo mais bem comentado que eu já fiz na minha vida. 
 
 
 

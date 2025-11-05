@@ -13,17 +13,17 @@ public class Programa2 {
         public static void main(String[] args) throws Exception {
             String opcao; //Escolha de opçao do Menu.
             do {
-                limparTela(); //Apenas para fins esteticos
-                System.out.println("====== Menu ========");                      //é possivel tranformar toda essa
-                System.out.println("[1] - Recarregar arquivo de entrada");       //parte em uma unica funçao "menu()"   
+                System.out.println("\n====== Menu ========");                      //é possivel tranformar toda essa
+                System.out.println("[1] - Recarregar arquivo de entrada");       //parte em uma unica metodo "menu()"   
                 System.out.println("[2] - Inserir item na base");                //e deixar no main apenas a chamada
-                System.out.println("[3] - Mostrar produtos e preço de venda");   //dessa função.
+                System.out.println("[3] - Mostrar produtos e preço de venda");   //dessa metodo.
                 System.out.println("[4] - Gerar CSV com preço de venda"); 
                 System.out.println("[5] - Gerar nova margem"); 
                 System.out.println("[6] - Estoque:");                            
                 System.out.println("[0] - Sair");
                 System.out.print("Escolha sua opção: ");
                 opcao = teclado.readLine();
+                limparTela();//Apenas para fins esteticos
 
                 switch (opcao) { //Executa as funçoes e retorna ao menu
                     case "1": recarregarArquivo(); break;
@@ -35,7 +35,6 @@ public class Programa2 {
                     case "0": System.out.println("Bye..."); break;
                     default:
                         System.out.println("Opção inválida!");
-                        //pausar();
                         break;
                 }
 
@@ -52,12 +51,8 @@ public class Programa2 {
             }
         }
 
-        static void pausar() throws IOException { //Apenas para quando o usuario digitar algo esperar.
-            System.out.println("\nPressione ENTER para continuar...");
-            teclado.readLine();
-        } 
 
-        // === Funções do Menu Principal ===//
+        // === metodos do Menu Principal ===//
 
         static void recarregarArquivo() throws Exception{ //Abre um novo arquivo para a entrada de valores.
             System.out.print("Novo arquivo de entrada (ou Enter para manter): ");
@@ -81,7 +76,7 @@ public class Programa2 {
             System.out.print("Estoque: "); //Estoque do produto a ser adicionado
             String estoque = teclado.readLine();
 
-            System.out.print("Produto: "); //Produto do produto a ser adicionado
+            System.out.print("Produto: "); //Produto a ser adicionado
             String nome = teclado.readLine();
             
             System.out.print("Preço de custo: ");  //Preço do produto a ser adicionado
@@ -97,62 +92,68 @@ public class Programa2 {
         }
 
         static void mostrarProdutosVenda() throws Exception {
-            String linha1; //Variavel local Linha1
+            String linha1; //Variavel local Linha4
             if (margem == 0) {
                 novaMargem(teclado);
             }
-            BufferedReader arq1 = new BufferedReader(new FileReader(entrada));
-            arq1.readLine(); // pula cabeçalho da primeira linha
+
+            BufferedReader arq = new BufferedReader(new FileReader(entrada)); //Arq = arquivo da entrada.
+            arq.readLine(); // pula cabeçalho da primeira linha
 
             System.out.println("\nCódigo | Produto | Preço de Venda");
             
-            while ((linha1 = arq1.readLine()) != null) { //Enquanto a linha 1 nao for nula
+            while ((linha1 = arq.readLine()) != null) { //Enquanto a linha 1 nao for nula
                 String[] col = linha1.split(";"); //Separa os itens da linha pelo ";" e coloca em um array
                 float custo = Float.parseFloat(col[3].replace(",", ".")); //No caso dos floats muda a "," por ".", por ser assim que o java le
                 float venda = custo * (1 + margem / 100); //Valor deduzido da margem.
                 System.out.println(col[0] + " | " + col[2] + " | " + String.format("%.2f", venda)); 
             }
-            arq1.close(); //Fecha o arquivo.
+            arq.close(); //Fecha o arquivo.
         }
 
         static void gerarCSVPrecoVenda() throws Exception {
             if (margem == 0) { novaMargem(teclado); }
 
             System.out.print("Nome do arquivo de saída: ");
-            String saida7 = teclado.readLine();
+            String saida = teclado.readLine() + ".csv";//Para gerar um .csv sempre
 
-            BufferedReader arq7 = new BufferedReader(new FileReader(entrada));
-            BufferedWriter out7 = new BufferedWriter(new FileWriter(saida7));
+            BufferedReader arq = new BufferedReader(new FileReader(entrada));
+            BufferedWriter out = new BufferedWriter(new FileWriter(saida));
 
-            arq7.readLine(); // pula cabeçalho
-            out7.write("codigo;produto;preco_venda");
-            out7.newLine();
+            arq.readLine(); // pula cabeçalho
+            out.write("codigo;produto;preco_venda");
+            out.newLine();
 
-            String linha7;
-            while ((linha7 = arq7.readLine()) != null) {
-            String[] col = linha7.split(";");
-            float custo7 = Float.parseFloat(col[3].replace(",", "."));
-            float venda7 = custo7 * (1 + margem / 100);
-            out7.write(col[0] + ";" + col[2] + ";" + String.format("%.2f", venda7));
-            out7.newLine();
+            String linha;
+            while ((linha = arq.readLine()) != null) {
+                String[] col = linha.split(";");
+                float custo7 = Float.parseFloat(col[3].replace(",", "."));
+                float venda7 = custo7 * (1 + margem / 100);
+                out.write(col[0] + ";" + col[2] + ";" + String.format("%.2f", venda7));
+                out.newLine();
             }
-            arq7.close();
-            out7.close();
-            System.out.println("Arquivo '" + saida7 + "' gerado com sucesso!");
+            arq.close();
+            out.close();
+            System.out.println("Arquivo '" + saida + "' gerado com sucesso!");
             
         }
 
-        public static void novaMargem(BufferedReader teclado) throws IOException {
+        public static void novaMargem(BufferedReader teclado) throws IOException { //Para criar uma margem de lucro
             System.out.print("Digite a margem de lucro (%): ");
-            margem = Float.parseFloat(teclado.readLine()); //Define o valor da margem ao digitado.
-            //pausar();
+            String entrada = teclado.readLine(); // lê o que o usuário digitou
+            if (entrada.isEmpty()) { // se só apertou Enter a margem é nula
+                margem = 0;
+                System.out.println("Margem de lucro padrão de 10%");
+            }else {
+                margem = Float.parseFloat(entrada);
+            }
         }
 
         // === Submenu Estoque ===
-        static void menuEstoque() throws Exception {
+        static void menuEstoque() throws Exception { //Sub menu do estoque
         String opc;
         do {
-            limparTela();
+           
             System.out.println("=== Estoque ====");
             System.out.println("[1] - Mostrar produtos com estoque < 10");
             System.out.println("[2] - Gerar CSV com estoque < 10");
@@ -160,6 +161,7 @@ public class Programa2 {
             System.out.println("[0] - Voltar ao Menu principal");
             System.out.print("Escolha sua opção: ");
             opc = teclado.readLine();
+            limparTela();
 
             switch (opc) {
                 case "1": mostrarEstoqueBaixo(); break;
@@ -168,7 +170,6 @@ public class Programa2 {
                 case "0": break;
                 default:
                     System.out.println("Opção inválida!");
-                    //pausar();
                     break;
             }
         } while (!opc.equals("0"));
@@ -178,52 +179,52 @@ public class Programa2 {
     static void mostrarEstoqueBaixo() throws Exception {
         //limparTela();
         System.out.println("Produtos com estoque < 10:");
-        try (BufferedReader arq = new BufferedReader(new FileReader(entrada))) {
-            arq.readLine();
-            String linha;
-            while ((linha = arq.readLine()) != null) {
-                String[] col = linha.split(";");
-                int estoque = Integer.parseInt(col[1]);
-                if (estoque < 10)
-                    System.out.println(col[0] + " | " + col[2] + " | Estoque: " + estoque);
+        BufferedReader arq = new BufferedReader(new FileReader(entrada)); //acessa o arquivo de entrada
+        arq.readLine(); 
+        String linha;
+        while ((linha = arq.readLine()) != null) { //Enquanto a linha não for vazia
+            String[] col = linha.split(";"); //separa as colunas das linhas separando pelo ";"
+            int estoque = Integer.parseInt(col[1]); //coloca o valor da primeira coluna na variavel estoque como um inteiro.
+            if (estoque < 10){ //apenas se o item no estoque for menor do que 10 é feito o print.
+                System.out.println(col[0] + " | " + col[2] + " | Estoque: " + estoque);
             }
         }
-        //pausar();
     }
 
     static void gerarCSVEstoqueBaixo() throws Exception {
         System.out.println("Nome do arquivo de saída: ");
-        String saida5 = teclado.readLine();
-        BufferedReader arq5 = new BufferedReader(new FileReader(entrada));
-        BufferedWriter out5 = new BufferedWriter(new FileWriter(saida5));
-        String linha5 = arq5.readLine();
-        out5.write(linha5);
-        out5.newLine();
-        while ((linha5 = arq5.readLine()) != null) {
-            String[] col = linha5.split(";");
+        String saida = teclado.readLine() + ".csv" ; //Captura a escrita do usuario já adicionando o ".csv"
+
+        BufferedReader arq = new BufferedReader(new FileReader(entrada)); //Leitor do arquivo de entrada
+        BufferedWriter out = new BufferedWriter(new FileWriter(saida)); //Escritor do arquivo de saida
+        String linha = arq.readLine(); //Le a linha do arquivo de entrada e salva na string "Linha"
+        out.write(linha);
+        out.newLine();
+        while ((linha = arq.readLine()) != null) {
+            String[] col = linha.split(";");
             int estoque = Integer.parseInt(col[1]);
             if (estoque < 10) {
-                out5.write(linha5);
-                out5.newLine();
+                out.write(linha);
+                out.newLine();
             }
         }
-        arq5.close();
-        out5.close();
-        System.out.println("Arquivo '" + saida5 + "' gerado!");
+        arq.close();
+        out.close();
+        System.out.println("Arquivo '" + saida + "' gerado!");
     }
 
     static void mostrarProdutosCusto() throws Exception {
-        BufferedReader arq2 = new BufferedReader(new FileReader(entrada));
-        arq2.readLine();
+        BufferedReader arq = new BufferedReader(new FileReader(entrada));
+        arq.readLine();
         System.out.println("\nCódigo | Produto | Preço de Custo | Estoque");
-        String linha2;
+        String linha;
 
-        while ((linha2 = arq2.readLine()) != null) {
-            String[] col = linha2.split(";");
+        while ((linha = arq.readLine()) != null) {
+            String[] col = linha.split(";");
             System.out.println(col[0] + " | " + col[2] + " | " + col[3] + " | " + col[1]);
         }
 
-        arq2.close();
+        arq.close();
 
     }
 

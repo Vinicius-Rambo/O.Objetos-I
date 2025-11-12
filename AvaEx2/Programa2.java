@@ -47,7 +47,7 @@ public class Programa2 {
                 new ProcessBuilder("clear").inheritIO().start().waitFor(); //Limpa o terminal
             }
             catch (Exception e) {                          //Se não conseguir dá um expaçamento de 40 linhas
-                System.out.println("\n".repeat(40)); //fiz isso pois estou programando no Windows.
+                System.out.println("\n".repeat(40));      //fiz isso pois estou programando no Windows, e nele esse comando não funciona. 
             }
         }
 
@@ -64,8 +64,7 @@ public class Programa2 {
 
             novaMargem(teclado);
             System.out.println("Arquivo atualizado: " + entrada);
-            
-            
+        
         }
 
         static void inserirProduto() throws Exception {
@@ -92,7 +91,7 @@ public class Programa2 {
         }
 
         static void mostrarProdutosVenda() throws Exception {
-            String linha1; //Variavel local Linha4
+            String linha; //Variavel local Linha
             if (margem == 0) {
                 novaMargem(teclado);
             }
@@ -102,7 +101,7 @@ public class Programa2 {
 
             System.out.println("\nCódigo | Produto | Preço de Venda");
             
-            while ((linha1 = arq.readLine()) != null) { //Enquanto a linha 1 nao for nula
+            while ((linha = arq.readLine()) != null) { //Enquanto a linha 1 nao for nula
                 String[] col = linha1.split(";"); //Separa os itens da linha pelo ";" e coloca em um array
                 float custo = Float.parseFloat(col[3].replace(",", ".")); //No caso dos floats muda a "," por ".", por ser assim que o java le
                 float venda = custo * (1 + margem / 100); //Valor deduzido da margem.
@@ -127,8 +126,8 @@ public class Programa2 {
             String linha;
             while ((linha = arq.readLine()) != null) {
                 String[] col = linha.split(";");
-                float custo7 = Float.parseFloat(col[3].replace(",", "."));
-                float venda7 = custo7 * (1 + margem / 100);
+                float custo = Float.parseFloat(col[3].replace(",", "."));
+                float venda = custo * (1 + margem / 100);
                 out.write(col[0] + ";" + col[2] + ";" + String.format("%.2f", venda7));
                 out.newLine();
             }
@@ -142,7 +141,7 @@ public class Programa2 {
             System.out.print("Digite a margem de lucro (%): ");
             String entrada = teclado.readLine(); // lê o que o usuário digitou
             if (entrada.isEmpty()) { // se só apertou Enter a margem é nula
-                margem = 0;
+                margem = 10;
                 System.out.println("Margem de lucro padrão de 10%");
             }else {
                 margem = Float.parseFloat(entrada);
@@ -229,26 +228,4 @@ public class Programa2 {
     }
 
     // Acho que esse é o codigo mais bem comentado que eu já fiz na minha vida. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

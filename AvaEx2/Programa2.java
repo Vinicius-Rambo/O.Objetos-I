@@ -224,8 +224,6 @@ public class Programa2 {
         }
 
         arq.close();
-
     }
-
-    // Acho que esse é o codigo mais bem comentado que eu já fiz na minha vida. 
+  // Acho que esse é o codigo mais bem comentado que eu já fiz na minha vida. 
 }

@@ -15,7 +15,6 @@ public class Transportadora implements ImportacaoArquivos {
     private double precoNormalKg;
     private double precoExpressoKg;
 
-    @Override
     public void carregarConfiguracoes(String arquivo) throws Exception {
         BufferedReader br = new BufferedReader(new FileReader("Dados/" + arquivo));
         br.readLine(); // pula cabeçalho
@@ -42,7 +41,6 @@ public class Transportadora implements ImportacaoArquivos {
         System.out.println("Configurações carregadas.\n");
     }
 
-    @Override
     public void importarDados(String arquivo) throws Exception {
 
         BufferedReader br = new BufferedReader(new FileReader("Dados/" + arquivo));
@@ -99,7 +97,7 @@ public class Transportadora implements ImportacaoArquivos {
             return;
         }else{
 
-            System.out.println("\n=== ENCOMENDAS NORMAIS ===");
+            System.out.println("\n- - - ENCOMENDAS NORMAIS - - -");
 
             // Cabeçalho formatado
             System.out.printf("%10s | %12s | %10s%n", "Nro Pedido", "Peso (KG)", "Frete");
@@ -122,7 +120,7 @@ public class Transportadora implements ImportacaoArquivos {
             return;
         }else{
 
-            System.out.println("\n=== ENCOMENDAS EXPRESSAS ===");
+            System.out.println("\n- - - ENCOMENDAS EXPRESSAS - - -");
 
             // Cabeçalho
             System.out.printf("%10s | %12s | %10s | %8s | %15s%n","Nro Pedido", "Peso (KG)", "Frete", "Prazo", "Telefone");
@@ -131,7 +129,7 @@ public class Transportadora implements ImportacaoArquivos {
             for (int i = 0; i < indiceExpressa; i++) {
                 EncomendaExpressa e = expressas[i];
 
-                System.out.printf("%10d | %12.2f | R$ %8.2f | %8d | %-15s%n",
+                System.out.printf("%10d | %12.2f | R$ %7.2f | %8d | %-15s%n",
                     e.getNumeroPedido(),
                     e.getPeso(),
                     e.calcularFrete(),

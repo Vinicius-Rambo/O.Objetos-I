@@ -1,20 +1,37 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 
 public class ProgramaTransportadora {
-    static BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in)); 
     public static void main(String[] args) throws Exception {
         Transportadora transp = new Transportadora();
-        System.out.println("Arquivo de configuração: ");
-        String arqConfig = teclado.readLine();
+        limparTela();
 
-        transp.carregarConfiguracoes(arqConfig);
+        boolean configuracaoCarregada = false; //Boleano da configuração
+        String arqConfig = ""; //Declaraçao do arquivo de configuração
+
+        do{
+            try{
+                System.out.println("Arquivo de configuração: ");
+                arqConfig = teclado.readLine() + ".csv"; //Futuramente adicionar algo para verificar se já tem extenssão.
+
+                transp.carregarConfiguracoes(arqConfig);
+                configuracaoCarregada = true;
+            }catch(FileNotFoundException e){ //Exceção caso não consiga abrir o arquivo 
+
+                System.out.println("ERRO: Arquivo '" + arqConfig + " ' não encontrado na pasta 'Dados/'.");
+            }
+
+        }while(!configuracaoCarregada); //Somente sai do laço caso configuracaoCarregada seja verdadeiro, caso ele ache o arquivo. 
+
         String opcao;
         do{
-            System.out.println("===== MENU =====");
+            System.out.println("- - - - MENU - - - - ");
             System.out.println("[1] - Importar arquivo de encomendas");
             System.out.println("[2] - Listar encomendas normais");
             System.out.println("[3] - Listar encomendas expressas");
+            System.out.println("[4] - Listar todas as encomendas");
             System.out.println("[0] - Sair");
             System.out.print("Opção: ");
             opcao = teclado.readLine();
@@ -24,7 +41,7 @@ public class ProgramaTransportadora {
             switch (opcao) {
                 case "1":
                     System.out.println("Arquivo de dados:");
-                    String arqDados = teclado.readLine();
+                    String arqDados = teclado.readLine() + ".csv";
                     transp.importarDados(arqDados);
                     break;
                 
@@ -33,6 +50,13 @@ public class ProgramaTransportadora {
                     break;
                 
                 case "3":
+                    transp.listarExpressas();
+                    break;
+
+                case "4":
+                    System.out.println("LISTAGEM COMPLETA DE ENCOMENDAS ");
+                    transp.listarNormais();
+                    System.out.println("-----------------------------------------\n");
                     transp.listarExpressas();
                     break;
 
@@ -46,6 +70,7 @@ public class ProgramaTransportadora {
 
         }while (!opcao.equals("0"));
     }
+
     static void limparTela() {
         try { //Tenta limpar a tela 
             new ProcessBuilder("clear").inheritIO().start().waitFor();

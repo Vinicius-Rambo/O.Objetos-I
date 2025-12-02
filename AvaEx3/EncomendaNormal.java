@@ -56,10 +56,5 @@ public class EncomendaNormal {
     public void setPrecokg(double precokg) {
         this.precokg = precokg;
     }
-
-    //Polimorfismo Override para usada 
-    @Override
-    public String toString(){
-        return numeroPedido + " | " + peso + "kg | R$ " + String.format("%.2f", calcularFrete());
-    }    
+   
 }

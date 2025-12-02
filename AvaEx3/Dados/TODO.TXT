@@ -1,3 +1,0 @@
-Fazer validação para caso o arquivo de configuração não consiga entrar, evitando Exceção.
-Lapidar o Todas as encomendas, junto com o fato de arrumar o printf 
-adicionar um idicativo visual de qual arquivo foi escolhido.

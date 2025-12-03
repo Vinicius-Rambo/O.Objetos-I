@@ -32,6 +32,7 @@ public class ProgramaTransportadora {
             System.out.println("[2] - Listar encomendas normais");
             System.out.println("[3] - Listar encomendas expressas");
             System.out.println("[4] - Listar todas as encomendas");
+            System.out.println("[5] - Limpar importações");
             System.out.println("[0] - Sair");
             System.out.print("Opção: ");
             opcao = teclado.readLine();
@@ -40,9 +41,21 @@ public class ProgramaTransportadora {
             
             switch (opcao) {
                 case "1":
-                    System.out.println("Arquivo de dados:");
-                    String arqDados = teclado.readLine() + ".csv";
-                    transp.importarDados(arqDados);
+                    boolean arquivoValido = false;
+                    String arqDados = "";
+
+                    do {
+                        try {
+                            System.out.print("Arquivo de dados: ");
+                            arqDados = teclado.readLine() + ".csv";
+                            transp.importarDados(arqDados); 
+                            arquivoValido = true;
+
+                        }catch (FileNotFoundException e){
+                            System.out.println("ERRO: Arquivo '" + arqDados + "' não encontrado na pasta 'Dados/'.");
+                        }
+
+                    }while (!arquivoValido);
                     break;
                 
                 case "2":
@@ -60,6 +73,10 @@ public class ProgramaTransportadora {
                     transp.listarExpressas();
                     break;
 
+                case "5":
+                    transp.limparEncomendas();
+                    break;
+                
                 case "0":
                     System.out.println("Bye....");
                     break;

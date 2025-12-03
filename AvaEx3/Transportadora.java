@@ -49,28 +49,28 @@ public class Transportadora implements ImportacaoArquivos {
         String linha;
         while ((linha = br.readLine()) != null) {
 
-            //if (linha.trim().equals("")) continue; // ignora linha vazia
-
-            String[] col = linha.split(";", -1); // "-1" mantém colunas vazias, impede erro quando o CSV tem ;;
+            String[] col = linha.split(";"); // "-1" mantém colunas vazias, impede erro quando o CSV tem ;;
 
             int numero = Integer.parseInt(col[0]);
             String data = col[1];
             String tipo = col[2];
 
-            String prazoTxt = "";
-            if (col.length > 3) {
-                prazoTxt = col[3];
-            }
-
+            //String prazoTxt = "";
+            //if (col.length > 3) 
+            //    prazoTxt = col[3];
+            
+            String prazoTxt = col.length > 3 ? col[3] : ""; //Operador Ternario
             double peso = Double.parseDouble(col[4]);
-
-            String telefone = "";
-            if (col.length > 5) {
-                telefone = col[5];
-            }
+            String telefone = col.length > 5 ? col[5] : "";
+                
 
             // Encomenda Normal (EN)
             if (tipo.equals("EN")) {
+                if (indiceNormal >= tamanho) {
+                    System.out.println("AVISO: Limite de " + tamanho + " encomendas normais atingido. Pedido " + numero + " ignorado.");
+                    continue; 
+                }
+
                 EncomendaNormal n = new EncomendaNormal(numero, data, peso, precoNormalKg);
                 normais[indiceNormal] = n;
                 indiceNormal++; // avança a posição
@@ -78,13 +78,21 @@ public class Transportadora implements ImportacaoArquivos {
             }
             // Encomenda Expressa (EE)
             else if (tipo.equals("EE")) {
+                
+                if (indiceExpressa >= tamanho) {
+                    System.out.println("AVISO: Limite de " + tamanho + " encomendas Expressas atingido. Pedido " + numero + " ignorado.");
+                    continue;
+                }
+                
                 int prazo = prazoTxt.equals("") ? 0 : Integer.parseInt(prazoTxt); //Operador Ternario, para evitar o If-Else
 
                 EncomendaExpressa e = new EncomendaExpressa( numero, data, peso, precoExpressoKg, prazo, telefone);
                 expressas[indiceExpressa] = e;
-                indiceExpressa++; // avança
+                indiceExpressa++; // avança a posição
+
+            }else 
+                System.err.println("Encomenda: não registrada.");
             }
-        }
 
         br.close();
         System.out.println("Arquivo importado.\n");
@@ -134,5 +142,19 @@ public class Transportadora implements ImportacaoArquivos {
 
             System.out.println();
         }
+    }
+
+    public void limparEncomendas() {
+        // Zera os vetores
+        for (int i = 0; i < tamanho; i++) {
+            normais[i] = null;
+            expressas[i] = null;
+        }
+
+        // Reseta contadores
+        indiceNormal = 0;
+        indiceExpressa = 0;
+
+        System.out.println("Todos os dados de encomendas foram apagados.\n");
     }
 }

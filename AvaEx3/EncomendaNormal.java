@@ -5,7 +5,6 @@ public class EncomendaNormal {
     private double peso;
     private double precokg;
 
-    //Contrutor padrão do sistema
     public EncomendaNormal(int numeroPedido, String dataPostagem, double peso, double precokg){
         this.numeroPedido = numeroPedido;
         this.dataPostagem = dataPostagem;

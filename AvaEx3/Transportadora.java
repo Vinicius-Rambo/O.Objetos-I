@@ -3,7 +3,7 @@ import java.io.FileReader;
 
 public class Transportadora implements ImportacaoArquivos {
     public static int tamanho = 10;
-    // Vetores para armazenar até 100 encomendas de cada tipo, foi feito um vetor de objetos
+    // Vetores para armazenar até [tamanho] encomendas de cada tipo, foi feito um vetor de objetos
     private EncomendaNormal[] normais = new EncomendaNormal[tamanho];
     private EncomendaExpressa[] expressas = new EncomendaExpressa[tamanho];
 
@@ -49,7 +49,7 @@ public class Transportadora implements ImportacaoArquivos {
         String linha;
         while ((linha = br.readLine()) != null) {
 
-            String[] col = linha.split(";"); // "-1" mantém colunas vazias, impede erro quando o CSV tem ;;
+            String[] col = linha.split(";"); 
 
             int numero = Integer.parseInt(col[0]);
             String data = col[1];
@@ -58,10 +58,11 @@ public class Transportadora implements ImportacaoArquivos {
             //String prazoTxt = "";
             //if (col.length > 3) 
             //    prazoTxt = col[3];
+            //Antes tinha feito com IF, mas decidi usar o Operador ternario, apenas por estetica do codigo
             
             String prazoTxt = col.length > 3 ? col[3] : ""; //Operador Ternario
             double peso = Double.parseDouble(col[4]);
-            String telefone = col.length > 5 ? col[5] : "";
+            String telefone = col.length > 5 ? col[5] : ""; //Operador Ternario
                 
 
             // Encomenda Normal (EN)

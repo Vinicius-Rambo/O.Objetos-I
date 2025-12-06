@@ -13,13 +13,13 @@ public class ProgramaTransportadora {
 
         do{
             try{
-                System.out.println("Arquivo de configuração: ");
+                System.out.println("Arquivo de configuração(.csv): ");
                 arqConfig = teclado.readLine() + ".csv"; //Futuramente adicionar algo para verificar se já tem extenssão.
 
                 transp.carregarConfiguracoes(arqConfig);
                 configuracaoCarregada = true;
-            }catch(FileNotFoundException e){ //Exceção caso não consiga abrir o arquivo 
 
+            }catch(FileNotFoundException e){ //Exceção em caso de não existir o arquivo digitado em Dados/ 
                 System.out.println("ERRO: Arquivo '" + arqConfig + " ' não encontrado na pasta 'Dados/'.");
             }
 
@@ -46,16 +46,16 @@ public class ProgramaTransportadora {
 
                     do {
                         try {
-                            System.out.print("Arquivo de dados: ");
+                            System.out.print("Arquivo de dados(.csv): ");
                             arqDados = teclado.readLine() + ".csv";
                             transp.importarDados(arqDados); 
                             arquivoValido = true;
 
-                        }catch (FileNotFoundException e){
+                        }catch (FileNotFoundException e){ //Exceção em caso de não existir o arquivo digitado em Dados/
                             System.out.println("ERRO: Arquivo '" + arqDados + "' não encontrado na pasta 'Dados/'.");
                         }
 
-                    }while (!arquivoValido);
+                    }while (!arquivoValido); //Apenas se o Boleano for True
                     break;
                 
                 case "2":

@@ -2,10 +2,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Transportadora implements ImportacaoArquivos {
-    public static int tamanho = 10;
+    public static int tamanho = 10; //tamanho personalizado para testes 
+
     // Vetores para armazenar até [tamanho] encomendas de cada tipo, foi feito um vetor de objetos
-    private EncomendaNormal[] normais = new EncomendaNormal[tamanho];
-    private EncomendaExpressa[] expressas = new EncomendaExpressa[tamanho];
+    private EncomendaNormal normais[] = new EncomendaNormal[tamanho];
+    private EncomendaExpressa expressas[] = new EncomendaExpressa[tamanho];
 
     // Contadores de posição dos vetores
     private int indiceNormal = 0;

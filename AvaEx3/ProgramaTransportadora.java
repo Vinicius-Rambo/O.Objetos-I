@@ -21,6 +21,7 @@ public class ProgramaTransportadora {
 
             }catch(FileNotFoundException e){ //Exceção em caso de não existir o arquivo digitado em Dados/ 
                 System.out.println("ERRO: Arquivo '" + arqConfig + " ' não encontrado na pasta 'Dados/'.");
+                
             }
 
         }while(!configuracaoCarregada); //Somente sai do laço caso configuracaoCarregada seja verdadeiro, caso ele ache o arquivo. 
